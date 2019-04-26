@@ -12,8 +12,8 @@ let start = null;
 const Ball = function(x, y, r, c0, c1, blur) {
     const ball = {};
     ball.r = r ? r : random(40, 120);
-    ball.x = x ? x : random(ball.r * 2, canvas.width - (ball.r * 2));
-    ball.y = y ? y : random(ball.r * 2, canvas.height - (ball.r * 2));
+    ball.x = x ? x : random(ball.r * 2, canvas.width - (ball.r * 3));
+    ball.y = y ? y : random(ball.r * 2, canvas.height - (ball.r * 3));
     ball.r = r ? r : random(40, 120);
     ball.velX = random(-7, 7);
     ball.velY = random(-7, 7);
@@ -56,12 +56,12 @@ function newBall(x, y, r, c0, c1, blur) {
 }
 
 let i = 0;
-/*
+
 while (i < 10) {
     newBall(false, false, false, [221 + (i*4), 8 + (i*4), 144 + (i*4), 1], [75 - (i * 4), 0, 130 - (i * 4), 1]);
     i++;
 }
-*/
+
 function step(timestamp) {
     ctx.fillStyle = "#1c0030";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -73,10 +73,11 @@ function step(timestamp) {
         element.update();
     });
     
-    ctx.filter = "none";
+/*    ctx.filter = "none";
     ctx.font = '12px sans-serif';
     ctx.fillStyle = "#fff";
     ctx.fillText(Math.floor(progress), 4, 20);
+    */
     window.requestAnimationFrame(step);
 }
 
@@ -93,3 +94,11 @@ function random(min,max) {
 let body = document.getElementsByTagName('body')[0];
 
 body.appendChild(canvas);
+
+window.onresize = () => {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight; 
+}
+window.onscroll = () => {
+    canvas.setAttribute("style", "top: " + window.pageYOffset + "px");
+}

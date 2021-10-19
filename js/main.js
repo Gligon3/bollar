@@ -16,8 +16,8 @@ const Ball = function(x, y, r) {
     ball.x = x;
     ball.y = y;
     ball.r = r;
-    ball.velX = random(-2, 2);
-    ball.velY = random(-2, 2);
+    ball.velX = random(-5, 5);
+    ball.velY = random(-5, 5);
     ball.collide = function(balls) {
         if(this.x - this.r < 0 || this.x + this.r > canvas.width) {
             this.velX = -this.velX;
